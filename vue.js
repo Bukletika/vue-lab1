@@ -20,7 +20,9 @@ const App = {
   methods: {
     prev() {
       // когда нажимаем кнопку назад
-      this.activeIndex--;
+      if (this.activeIndex !== 0) {
+        this.activeIndex--;
+      }
     },
     reset() {
       // начать заново
@@ -47,8 +49,9 @@ const App = {
   computed: {
     // тут стоит определить несколько свойств:
     // 1. текущий выбранный шаг
-    // !!Не понял, для чего нужно задавать текущий выбранный шаг
-
+    activeStep() {
+      return this.steps[this.activeIndex]
+    },
     // 2. выключена ли кнопка назад
     isBackBtnDisabled() {
       return this.activeIndex === 0;
